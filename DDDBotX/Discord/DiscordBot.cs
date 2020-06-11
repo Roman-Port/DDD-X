@@ -17,7 +17,9 @@ namespace DDDBotX.Discord
 
         public static List<IDiscordCommand> commands = new List<IDiscordCommand>()
         {
-            new RconDiscordCommand()
+            new RconDiscordCommand(),
+            new ChangeLevelDiscordCommand(),
+            new SetFragLimitCommand()
         };
 
         public static async Task InitAsync()
@@ -111,7 +113,9 @@ namespace DDDBotX.Discord
             if (!e.Message.Content.StartsWith(Program.config.discord_prefix) || e.Guild == null)
                 return;
             string command = e.Message.Content.Substring(Program.config.discord_prefix.Length).Split(' ')[0].ToLower();
-            string args = e.Message.Content.Substring(Program.config.discord_prefix.Length + command.Length + 1);
+            string args = "";
+            if(e.Message.Content.Length > Program.config.discord_prefix.Length + command.Length + 1)
+                args = e.Message.Content.Substring(Program.config.discord_prefix.Length + command.Length + 1);
 
             //Make sure the user is authenticated
             var member = await e.Guild.GetMemberAsync(e.Author.Id);
@@ -124,7 +128,7 @@ namespace DDDBotX.Discord
             {
                 string[] prefixes = c.GetCommandNames();
                 if (!prefixes.Contains(command))
-                    return;
+                    continue;
                 cmd = c;
             }
 

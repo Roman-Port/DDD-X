@@ -18,6 +18,9 @@ namespace DDDBotX.Framework.Config
         public int game_port;
         public string rcon_password;
 
+        public string[] valid_maps;
+        public string[] valid_modes;
+
         public string discord_token;
         public string discord_prefix;
         public ulong discord_admin_role_id;

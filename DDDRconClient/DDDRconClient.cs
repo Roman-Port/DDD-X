@@ -91,13 +91,13 @@ namespace DDDRconClient
         public async Task<string> ExecuteCommandAsync(string cmd)
         {
             //Convert the password to bytes
-            byte[] payload = Encoding.ASCII.GetBytes(cmd);
+            byte[] payload = Encoding.UTF8.GetBytes(cmd);
 
             //Send this and get the response
             RconPacket response = await PrivateSendPacketGetResponseAsync(RconType.SERVERDATA_EXECCOMMAND, payload);
 
             //Now, return the payload decoded
-            string message = Encoding.ASCII.GetString(response.payload);
+            string message = Encoding.UTF8.GetString(response.payload);
             return message;
         }
 

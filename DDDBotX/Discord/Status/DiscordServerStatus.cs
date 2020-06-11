@@ -107,7 +107,7 @@ namespace DDDBotX.Discord.Status
                 string topString = "";
                 for(int i = 0; i<top.Count; i+=1)
                 {
-                    string kd = $"KD {top[i].kd_ratio}";
+                    string kd = $"KD {MathF.Round(top[i].kd_ratio, 1)}";
                     if (top[i].kd_ratio == 1000) //Default K/D with no deaths
                         kd = "UNSTOPPABLE";
                     topString += $"{GetMedal(i + 1)} {top[i].name} ``{kd}``\n";

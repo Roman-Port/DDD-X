@@ -38,7 +38,7 @@ namespace DDDBotX.Framework
             players = new List<DDDOnlinePlayer>();
             
             //Set up listener
-            listener = new SourceLogConnection(IPAddress.Any, 1433);
+            listener = new SourceLogConnection(IPAddress.Any, 43292);
             listener.handler += Listener_handler;
             listener.StartListen();
         }

@@ -63,8 +63,7 @@ public void GotDatabase(Database db, const char[] error, any data)
     if (db == null)
 	{
 		//Error!
-        PrintToServer("DB Connect Error! Reconnecting");
-        ConnectToSQL();
+        PrintToServer("DB Connect Error!");
 	} 
     else 
     {
@@ -76,10 +75,10 @@ public void GotDatabase(Database db, const char[] error, any data)
 
 public void GotResponse(Database db, DBResultSet results, const char[] error, any data)
 {
-	if(results == INVALID_HANDLE) {
-        PrintToServer("DB was disconnected! Reconnecting...");
+	if(results == INVALID_HANDLE && hDatabase != null) {
+        PrintToServer("DB was disconnected!");
         PrintToServer(error);
-        ConnectToSQL();
+        hDatabase = null;
     }
 }
 
@@ -237,6 +236,10 @@ public Action OnClientSayCommand(int client, const char[] command, const char[] 
 
 public void OnMapStart() {
     SendAuthInfo();
+    if(hDatabase == null) {
+        PrintToServer("Map switched; Was not connected. Reconnecting...");
+        ConnectToSQL();
+    }
 }
 
 public void Event_PlayerChangedName(Event event, const char[] name, bool dontBroadcast) {
