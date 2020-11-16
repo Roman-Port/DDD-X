@@ -12,5 +12,6 @@ namespace DDDBotX.Framework.HistoryDb.DbEntities
         public long total_kills { get; set; } //The total number of kills this player has
         public long total_deaths { get; set; } //The total number of deaths a player has
         public float kd_ratio { get; set; } //Cached K/D ratio
+        public int player_reports { get; set; } //Number of times this player has been reported
     }
 }

@@ -1,5 +1,6 @@
 ﻿using DDDBotX.Framework.Config;
 using DDDBotX.Framework.HistoryDb.DbEntities;
+using DDDBotX.Framework.Steam;
 using DSharpPlus.Entities;
 using System;
 using System.Collections.Generic;
@@ -103,14 +104,23 @@ namespace DDDBotX.Discord.Status
                     leaderboardMax = 4;
 
                 //Fetch leaderboard users
-                List<DbPlayer> top = Program.db.FetchTopPlayers(leaderboardMax);
+                var top = Program.db.GetTopPlayers(out List<string> steamIdsToFetch, leaderboardMax, 0, 10);
+
+                //Fetch leaderboard Steam data
+                var steamUsers = SteamTool.FetchSteamUsers(steamIdsToFetch).GetAwaiter().GetResult();
+
+                //Update
                 string topString = "";
                 for(int i = 0; i<top.Count; i+=1)
                 {
-                    string kd = $"KD {MathF.Round(top[i].kd_ratio, 1)}";
-                    if (top[i].kd_ratio == 1000) //Default K/D with no deaths
-                        kd = "UNSTOPPABLE";
-                    topString += $"{GetMedal(i + 1)} {top[i].name} ``{kd}``\n";
+                    string kd = $"KD {MathF.Round(top[i].kd, 1)}";
+                    string rank = (i + 1).ToString();
+                    if(leaderboardMax > 9)
+                        rank = rank.PadLeft(2, '0');
+                    if (steamUsers.ContainsKey(top[i].id.ToString()))
+                        topString += $"[``{rank}``] {steamUsers[top[i].id.ToString()].personaname} *{kd}*\n";
+                    else
+                        topString += $"[``{rank}``] INVALID_USER *{kd}*\n";
                 }
 
                 //Add leaderboard

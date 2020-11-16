@@ -13,6 +13,7 @@ namespace DDDBotX.Framework.Config
         public string game_map_url; //Replaces "{MAP}" with a map name
 
         public string steam_api_key;
+        public string db_path;
 
         public string game_ip;
         public int game_port;

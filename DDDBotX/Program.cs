@@ -1,6 +1,7 @@
 ﻿using DDDBotX.Framework;
 using DDDBotX.Framework.Config;
 using DDDBotX.Framework.HistoryDb;
+using DDDBotX.Http;
 using Newtonsoft.Json;
 using RomanPort.SourceLogLib;
 using System;
@@ -20,22 +21,24 @@ namespace DDDBotX
         static void Main(string[] args)
         {
             //Load config
-            configPath = "config.json";
+            configPath = args[0];
             config = JsonConvert.DeserializeObject<BotConfig>(File.ReadAllText(configPath));
             
             //Set up connection
             conn = new DDDConnection();
             conn.Init();
-            //conn.OnPlayerListModified += Conn_OnPlayerListModified;
 
             //Set up DB
-            db = new HistoryDatabase(conn);
+            db = new HistoryDatabase(conn, config.db_path);
+            db.database.Rebuild();
+            Console.WriteLine("DB data loaded.");
 
             //Init Discord
             Discord.DiscordBot.InitAsync().GetAwaiter().GetResult();
+            Console.WriteLine("Discord init OK.");
 
-            //Hang
-            Task.Delay(-1).GetAwaiter().GetResult();
+            //Start HTTP server
+            DDDHttpServer.RunAsync().GetAwaiter().GetResult();
         }
 
         public static void SaveConfig()

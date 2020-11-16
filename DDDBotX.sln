@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDBotX", "DDDBotX\DDDBotX.csproj", "{88D60D40-0E9C-4682-BD4C-DA1082E34822}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDDBotX", "DDDBotX\DDDBotX.csproj", "{88D60D40-0E9C-4682-BD4C-DA1082E34822}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SourceLogLib", "SourceLogLib\SourceLogLib.csproj", "{13550F75-75AE-4258-8508-F519543220F8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDDRconClient", "DDDRconClient\DDDRconClient.csproj", "{A20F7D2A-1554-4A81-82B2-2756BAD28006}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDHistoryInspector", "DDDHistoryInspector\DDDHistoryInspector.csproj", "{C171C335-04EB-4110-965C-2BB09AE26FED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{A20F7D2A-1554-4A81-82B2-2756BAD28006}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A20F7D2A-1554-4A81-82B2-2756BAD28006}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A20F7D2A-1554-4A81-82B2-2756BAD28006}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C171C335-04EB-4110-965C-2BB09AE26FED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C171C335-04EB-4110-965C-2BB09AE26FED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C171C335-04EB-4110-965C-2BB09AE26FED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C171C335-04EB-4110-965C-2BB09AE26FED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
