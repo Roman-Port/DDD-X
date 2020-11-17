@@ -124,7 +124,8 @@ namespace DDDBotX.Discord.Status
                 }
 
                 //Add leaderboard
-                builder.AddField("Leaderboard - " + String.Format("{0:n0}", Program.db.GetNumberOfPlayers()) + " total", topString, false);
+                if(topString.Length > 0)
+                    builder.AddField("Leaderboard - " + String.Format("{0:n0}", Program.db.GetNumberOfPlayers()) + " total", topString, false);
 
                 //Add misc
                 builder.ImageUrl = Program.config.game_map_url.Replace("{MAP}", Program.conn.map_name);
