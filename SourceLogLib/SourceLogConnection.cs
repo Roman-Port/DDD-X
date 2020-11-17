@@ -36,7 +36,7 @@ namespace RomanPort.SourceLogLib
         public void Log(string topic, string msg)
         {
             //return;
-            Console.WriteLine($"[{topic}] {msg}");
+            Console.WriteLine($"[{DateTime.UtcNow.ToShortDateString()} {DateTime.UtcNow.ToShortTimeString()}] [SourceLogConnection -> {topic}] {msg}");
         }
 
         private void OnAcceptSocket(IAsyncResult ar)
@@ -71,7 +71,6 @@ namespace RomanPort.SourceLogLib
             try
             {
                 int length = sock.EndReceive(ar);
-                Log("OnSocketReceive", $"(Incoming message with length {length})");
 
                 //Close and abort if we lost connection
                 if (!sock.Connected || length == 0)
@@ -93,7 +92,6 @@ namespace RomanPort.SourceLogLib
                 {
                     //This is a command. Get the opcode
                     byte opcode = state.buffer[4];
-                    Log("OnMsg", "Got msg with opcode " + opcode);
                     if (opcode == 3)
                     {
                         //Query message

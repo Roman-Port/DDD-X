@@ -19,7 +19,8 @@ namespace DDDBotX.Discord
         {
             new RconDiscordCommand(),
             new ChangeLevelDiscordCommand(),
-            new SetFragLimitCommand()
+            new SetFragLimitCommand(),
+            new RefreshDiscordCommand()
         };
 
         public static async Task InitAsync()
